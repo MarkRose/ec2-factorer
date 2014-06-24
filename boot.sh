@@ -30,7 +30,7 @@ screen -dmS mf$i ./mfaktc.exe -d $i
 done
 
 # create crontab
-cron=""
+cron="SHELL=/bin/bash"
 set -f
 for i in $(seq 0 $last_card) ; do
 cron="$cron
