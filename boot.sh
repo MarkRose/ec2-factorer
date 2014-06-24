@@ -35,7 +35,7 @@ set -f
 for i in $(seq 0 $last_card) ; do
 cron="$cron
 30 * * * * $HOME/ec2-factorer/fetch.sh $HOME/mfaktc$i
-* * * * * rsync \"$HOME/mfaktc$i/{M*,results*,worktodo.txt}\" $BACKUP_HOST:mfaktc_backup/$instance_id-$i/
+* * * * * rsync $HOME/mfaktc$i/{M*,results*,worktodo.txt} $BACKUP_HOST:mfaktc_backup/$instance_id-$i/
 "
 done
 echo "$cron" | crontab -
