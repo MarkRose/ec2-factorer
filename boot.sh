@@ -3,6 +3,9 @@
 # read for backup host name
 source ~/.ec2-factorer.sh
 
+# rsync seems unhappy until an ssh connection has been made at least once
+ssh $BACKUP_HOST echo
+
 # update mfloopy
 cd ~/primetools
 git reset --hard
