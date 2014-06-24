@@ -13,6 +13,10 @@ cd ~/ec2-factorer
 git reset --hard
 git pull
 
+
+# instance id for backup directory
+instance_id=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+
 # instance type will determine number of GPUs to configure.
 instance_type=$(curl -s http://169.254.169.254/latest/meta-data/instance-type)
 
@@ -27,10 +31,11 @@ done
 
 # create crontab
 cron=""
+set -f
 for i in $(seq 0 $last_card) ; do
 cron="$cron
 30 * * * * $HOME/ec2-factorer/fetch.sh $HOME/mfaktc$i
 * * * * * rsync \"$HOME/mfaktc$i/{M*,results*,worktodo.txt}\" $BACKUP_HOST:mfaktc_backup/$INSTANCE_ID-$i/
-
 "
-echo $cron | crontab -
+done
+echo "$cron" | crontab -
