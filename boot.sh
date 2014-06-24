@@ -1,10 +1,7 @@
 #!/bin/bash
 
-# read for backup host name
-source ~/.ec2-factorer.sh
-
-# rsync seems unhappy until an ssh connection has been made at least once
-ssh $BACKUP_HOST echo
+# fix a booboo in the image
+chmod 400 /home/ubuntu/.ssh/mf.pub
 
 # update mfloopy
 cd ~/primetools
