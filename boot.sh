@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# fix a booboo in the image
-chmod 400 /home/ubuntu/.ssh/mf.pub
-
 # update mfloopy
 cd ~/primetools
 git reset --hard
